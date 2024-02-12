@@ -10,7 +10,7 @@ import OrderHistoryPage from "./pages/OrderHistory";
 import NavBar from "./components/Nav";
 
 export default function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   return (
     <main className="App">
