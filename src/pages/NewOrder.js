@@ -1,5 +1,5 @@
-export default function NewOrder (props) {
+export default function NewOrder () {
   return (
-    <h1>NewOrder Page</h1>
+    <h1>New Order Page</h1>
   )
 }
