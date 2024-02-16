@@ -23,7 +23,7 @@ export default function App() {
           </Routes>
         </>
        : 
-        <AuthPage />
+          <AuthPage />
       }
     </main>
   );
