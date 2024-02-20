@@ -90,7 +90,7 @@
 import { useState } from "react";
 import { signUp } from '../utilities/users-service'
 
-const SignUpForm = () => {
+const SignUpForm = ({ setUser }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -126,7 +126,7 @@ const SignUpForm = () => {
       // payload of the JSON Web Token (JWT)
       const user = await signUp(userData);
 
-      console.log(user);
+      setUser(user)
     } catch (error) {
       // An error has occurred
       setError("Sign Up Failed - Try Again");
