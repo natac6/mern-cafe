@@ -2,7 +2,7 @@
 import * as usersAPI from "./users-api";
 
 export async function signUp(userData) {
-  console.log("We are in users-service", userData);
+  //   console.log("We are in users-service", userData);
   // Delegate the network request code to the users-api.js API module
   // which will ultimately return a JSON Web Token (JWT)
   const token = await usersAPI.signUp(userData);
@@ -10,6 +10,12 @@ export async function signUp(userData) {
   // Persist Token
   localStorage.setItem("token", token);
 
+  return getUser();
+}
+
+export async function logIn(credentials) {
+  const token = await usersAPI.logIn(credentials);
+  localStorage.setItem("token", token);
   return getUser();
 }
 

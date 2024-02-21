@@ -8,7 +8,7 @@ import AuthPage from "./pages/Auth";
 import NewOrderPage from "./pages/NewOrder";
 import OrderHistoryPage from "./pages/OrderHistory";
 // components
-import NavBar from "./components/Nav";
+import NavBar from "./components/Nav/Nav";
 
 export default function App() {
   const [user, setUser] = useState(getUser());

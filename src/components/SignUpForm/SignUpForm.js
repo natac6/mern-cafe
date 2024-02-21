@@ -88,7 +88,7 @@
 
 // Refactor to Functional Component
 import { useState } from "react";
-import { signUp } from '../utilities/users-service'
+import { signUp } from '../../utilities/users-service'
 
 const SignUpForm = ({ setUser }) => {
   const [formData, setFormData] = useState({

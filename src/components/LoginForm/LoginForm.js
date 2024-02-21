@@ -1,39 +1,25 @@
 import { useState } from "react";
+import * as usersService from '../../utilities/users-service'
 
 const LoginForm = ({ setUser }) => {
   const [credentials, setcredentials] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const [error, setError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
     setcredentials({ ...credentials, [name]: value });
-
-    // setcredentials(prevcredentials => {
-    //     return (
-    //         {
-    //             ...prevcredentials,
-    //             [name] : value
-    //         }
-    //     )
-    // })
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // The promise returned by the signUp service method
-      // will resolve to the user object included in the
-      // payload of the JSON Web Token (JWT)
-
-    //   setUser(user)
-    userService.login(credentials)
+      const user = await usersService.logIn(credentials);
+      setUser(user)
     } catch (error) {
-      // An error has occurred
       setError("Login Failed - Try Again");
     }
   };
@@ -58,7 +44,7 @@ const LoginForm = ({ setUser }) => {
             onChange={handleChange}
             required
           />
-          <button type="submit">LOGIN</button>
+          <button type="submit">LOG IN</button>
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>
