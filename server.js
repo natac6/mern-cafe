@@ -5,6 +5,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const ensureLoggedIn = require('./config/ensureLoggedIn');
 
 const app = express();
 
@@ -13,13 +14,15 @@ app.use(express.json());
 
 app.use(favicon(path.join(__dirname, 'build', 'favicon.ico')));
 app.use(express.static(path.join(__dirname, 'build')));
-
 // Middleware to verify token and assign user object of payload to req.user.
 // Be sure to mount before routes
 app.use(require('./config/checkToken'));
 
 // Routes
 app.use('/api/users', require('./routes/api/users'))
+// Protect the API routes below from anonymous users
+app.use('/api/items', ensureLoggedIn, require('./routes/api/items'));
+app.use('/api/orders', ensureLoggedIn, require('./routes/api/orders'));
 
 app.get('/*', (req, res) => {
   res.sendFile(path.join(__dirname, 'build', 'index.html'))
